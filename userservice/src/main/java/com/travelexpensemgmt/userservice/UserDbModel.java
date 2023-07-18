@@ -1,26 +1,19 @@
 package com.travelexpensemgmt.userservice;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "User")
+@AllArgsConstructor
 @Builder
 @Getter
-@Entity(name = "Users")
-@Table(name="Users")
-@AllArgsConstructor
-@ToString
 public class UserDbModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @Column(name="firstName")
+    private String id;
     private String firstName;
-    @Column(name="lastName")
     private String lastName;
-    @Column(name="mail")
+    @Indexed(unique=true)
     private String mail;
-
 }

@@ -1,0 +1,150 @@
+version: '3.8'
+
+services:
+  eurekaserver:
+
+    image: eurekaserver
+
+    container_name: eurekaserver
+
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    networks:
+      backend:
+        aliases:
+          - "eurekaserver"
+  mongodb:
+
+    image: mongo:latest
+
+    container_name: mongodb
+
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    restart: always
+    networks:
+      backend:
+        aliases:
+          - "mongodb"
+  userservice:
+
+    image: userservice
+
+    container_name: userservice
+
+    environment:
+      MONGO_DB_HOST: mongodb
+      MONGO_DB_PORT: 27017
+      MONGO_DB_NAME: MDB
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
+
+    ports:
+      - "8081:8081"
+
+    expose:
+      - "8081"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      backend:
+        aliases:
+          - "userservice"
+  gateway:
+    image: gateway
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+      - eurekaserver
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
+    networks:
+      backend:
+        aliases:
+          - "gateway"
+  tripservice:
+
+    image: tripservice
+
+    container_name: tripservice
+
+    environment:
+      MONGO_DB_HOST: mongodb
+      MONGO_DB_PORT: 27017
+      MONGO_DB_NAME: MDB
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
+
+    ports:
+      - "8082:8082"
+
+    expose:
+      - "8082"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      backend:
+        aliases:
+          - "tripservice"
+  expenseservice:
+
+    image: expenseservice
+
+    container_name: expenseservice
+
+    environment:
+      MONGO_DB_HOST: mongodb
+      MONGO_DB_PORT: 27017
+      MONGO_DB_NAME: MDB
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
+
+    ports:
+      - "8083:8083"
+
+    expose:
+      - "8083"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      backend:
+        aliases:
+          - "expenseservice"
+  docservice:
+
+    image: docservice
+
+    container_name: docservice
+
+    environment:
+      MONGO_DB_HOST: mongodb
+      MONGO_DB_PORT: 27017
+      MONGO_DB_NAME: MDB
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka/
+
+    ports:
+      - "8084:8084"
+
+    expose:
+      - "8084"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      backend:
+        aliases:
+          - "docservice"
+networks:
+  backend:
+    driver: bridge

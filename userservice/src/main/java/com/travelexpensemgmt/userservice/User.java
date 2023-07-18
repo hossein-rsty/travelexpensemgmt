@@ -13,6 +13,5 @@ public class User {
     private final String userId;
     private String firstName;
     private String lastName;
-    private String email;
-    private boolean activated;
+    private String mail;
 }

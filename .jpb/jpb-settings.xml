@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DatabaseMigrationSettings" lastSelectedDirectory="userservice/src/main/resources/migration" />
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit name="Default">
+        <packages>
+          <package value="com.travelexpensemgmt.expenseservice" />
+        </packages>
+        <entities>
+          <entity value="com.travelexpensemgmt.userservice.UserDbModel" />
+        </entities>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>
