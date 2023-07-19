@@ -107,7 +107,7 @@ public class UserService {
 
     /**
      * INTERNAL
-     * @param userDbModel to be converted to a Task Object
+     * @param userDbModel to be converted to a User Object
      * @return the converted object
      */
     private User createUser(UserDbModel userDbModel) {

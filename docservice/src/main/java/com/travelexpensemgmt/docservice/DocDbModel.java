@@ -13,7 +13,7 @@ import java.net.URL;
  * @project: travelexpensemgmt
  * @author: Hossein Rostamiraeini
  */
-@Document(collection = "User")
+@Document(collection = "Doc")
 @AllArgsConstructor
 @Builder
 @Getter
@@ -24,4 +24,5 @@ public class DocDbModel {
     private DocType docType;
     @Indexed(unique = true)
     private URL url;
+
 }

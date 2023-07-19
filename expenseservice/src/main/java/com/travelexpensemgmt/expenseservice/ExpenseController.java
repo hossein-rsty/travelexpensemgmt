@@ -53,10 +53,10 @@ public class ExpenseController {
     }
     //Methode delete a Expense by Id
     @DeleteMapping("/delete/{expenseId}")
-    public ResponseEntity<Expense> deleteExpensekbyId(@PathVariable("expenseId") String taskId) {
+    public ResponseEntity<Expense> deleteExpensekbyId(@PathVariable("expenseId") String expenseId) {
         try {
-            Expense task = expenseService.deleteExpenseById(taskId);
-            return new ResponseEntity<>(task, HttpStatus.OK);
+            Expense expense = expenseService.deleteExpenseById(expenseId);
+            return new ResponseEntity<>(expense, HttpStatus.OK);
         }catch (IllegalArgumentException iae) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -69,6 +69,15 @@ public class ExpenseController {
             Expense updatedExpense = expenseService.updateById(expense);
             return new ResponseEntity<>(updatedExpense, HttpStatus.OK);
         }catch (IllegalArgumentException iae) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @PutMapping("/{id},{dId}")
+    public ResponseEntity<Expense> setAssignedDoc(@PathVariable("id") String id, @PathVariable("dId") String dId){
+        try{
+            final Expense expense = expenseService.setAssignedDoc(id, dId);
+            return new ResponseEntity<>(expense, HttpStatus.OK);
+        }catch(IllegalArgumentException iae){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

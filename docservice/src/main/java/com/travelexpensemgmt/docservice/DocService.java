@@ -110,7 +110,7 @@ public class DocService {
 
     /**
      * INTERNAL
-     * @param docDbModel to be converted to a Task Object
+     * @param docDbModel to be converted to a Doc Object
      * @return the converted object
      */
     private Doc createDoc(DocDbModel docDbModel) {

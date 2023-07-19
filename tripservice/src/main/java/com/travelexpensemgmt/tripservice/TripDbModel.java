@@ -24,4 +24,6 @@ public class TripDbModel {
     private LocalDate startDate;
     private LocalDate endDate;
     private String purpose;
+    private String assignedUserId;
+    private String assignedExpenseId;
 }

@@ -53,10 +53,10 @@ public class TripController {
     }
     //Methode delete a Trip by Id
     @DeleteMapping("/delete/{tripId}")
-    public ResponseEntity<Trip> deleteTripkbyId(@PathVariable("tripId") String taskId) {
+    public ResponseEntity<Trip> deleteTripkbyId(@PathVariable("tripId") String tripId) {
         try {
-            Trip task = tripService.deleteTripById(taskId);
-            return new ResponseEntity<>(task, HttpStatus.OK);
+            Trip trip = tripService.deleteTripById(tripId);
+            return new ResponseEntity<>(trip, HttpStatus.OK);
         }catch (IllegalArgumentException iae) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -69,6 +69,24 @@ public class TripController {
             Trip updatedTrip = tripService.updateById(trip);
             return new ResponseEntity<>(updatedTrip, HttpStatus.OK);
         }catch (IllegalArgumentException iae) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @PutMapping("/assignuser/{id},{uId}")
+    public ResponseEntity<Trip> setAssignedUser(@PathVariable("id") String id, @PathVariable("uId") String uId){
+        try{
+            final Trip trip = tripService.setAssignedUser(id, uId);
+            return new ResponseEntity<>(trip, HttpStatus.OK);
+        }catch(IllegalArgumentException iae){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @PutMapping("/assignexpense/{id},{eId}")
+    public ResponseEntity<Trip> setAssignedExpense(@PathVariable("id") String id, @PathVariable("eId") String eId){
+        try{
+            final Trip trip = tripService.setAssignedExpense(id, eId);
+            return new ResponseEntity<>(trip, HttpStatus.OK);
+        }catch(IllegalArgumentException iae){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

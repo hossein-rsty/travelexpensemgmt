@@ -5,6 +5,6 @@ package com.travelexpensemgmt.expenseservice;
  * @author: Hossein Rostamiraeini
  */
 public enum Category {
-    AIRFARE, ACCOMMODATION, MEALS, TRANSPORTATION, OTHER;
+    AIRFARE, ACCOMMODATION, MEALS, TRANSPORTATION, OTHER
 
 }

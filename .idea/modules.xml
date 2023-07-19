@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/docservice.main.iml" filepath="$PROJECT_DIR$/.idea/modules/docservice.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/expenseservice.main.iml" filepath="$PROJECT_DIR$/.idea/modules/expenseservice.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/travelexpensemgmt.iml" filepath="$PROJECT_DIR$/travelexpensemgmt.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tripservice.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tripservice.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/userservice.main.iml" filepath="$PROJECT_DIR$/.idea/modules/userservice.main.iml" />
     </modules>
   </component>

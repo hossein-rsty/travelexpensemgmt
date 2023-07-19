@@ -23,5 +23,6 @@ public class ExpenseDbModel {
     private double amount;
     private Currency currency;
     private String description;
+    private String assignedDocId;
 
 }

@@ -81,6 +81,32 @@ public class TripService {
         }
     }
     /**
+     *
+     * @param tripId the ID of the trip to be assigned to a user
+     * @param userId the ID of the user, which will get a Trip assigned to him
+     * @return the assigned Trip
+     */
+    public Trip setAssignedUser(String tripId, String userId){
+        Trip trip = getTripById(tripId);
+        trip.setAssignedUserId(userId);
+        final TripDbModel savedTrip = tripRepository
+                .save(editTripDbModel(trip));
+        return createTrip(savedTrip);
+    }
+    /**
+     *
+     * @param tripId the ID of the trip to be assigned to an Expense
+     * @param expenseId the ID of the expense, which will get a Trip assigned to it
+     * @return the assigned Trip
+     */
+    public Trip setAssignedExpense(String tripId, String expenseId){
+        Trip trip = getTripById(tripId);
+        trip.setAssignedExpenseId(expenseId);
+        final TripDbModel savedTrip = tripRepository
+                .save(editTripDbModel(trip));
+        return createTrip(savedTrip);
+    }
+    /**
      * INTERNAL
      * @param trip to be converted to a DB-Model Object
      * @return the converted object
@@ -93,6 +119,8 @@ public class TripService {
                 .startDate(trip.getStartDate())
                 .endDate(trip.getEndDate())
                 .purpose(trip.getPurpose())
+                .assignedUserId(trip.getAssignedUserId())
+                .assignedExpenseId(trip.getAssignedExpenseId())
                 .build();
     }
 
@@ -109,12 +137,14 @@ public class TripService {
                 .startDate(trip.getStartDate())
                 .endDate(trip.getEndDate())
                 .purpose(trip.getPurpose())
+                .assignedUserId(trip.getAssignedUserId())
+                .assignedExpenseId(trip.getAssignedExpenseId())
                 .build();
     }
 
     /**
      * INTERNAL
-     * @param tripDbModel to be converted to a Task Object
+     * @param tripDbModel to be converted to a Trip Object
      * @return the converted object
      */
     private Trip createTrip(TripDbModel tripDbModel) {
@@ -125,6 +155,8 @@ public class TripService {
                 .startDate(tripDbModel.getStartDate())
                 .endDate(tripDbModel.getEndDate())
                 .purpose(tripDbModel.getPurpose())
+                .assignedUserId(tripDbModel.getAssignedUserId())
+                .assignedExpenseId(tripDbModel.getAssignedExpenseId())
                 .build();
     }
 }

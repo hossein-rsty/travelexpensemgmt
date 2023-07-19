@@ -49,7 +49,7 @@ public class UserController {
     }
     //Methode delete a User by Id
     @DeleteMapping("/delete/{userId}")
-    public ResponseEntity<User> deleteUserkbyId(@PathVariable("userId") String taskId) {
+    public ResponseEntity<User> deleteUserbyId(@PathVariable("userId") String taskId) {
         try {
             User task = userService.deleteUserById(taskId);
             return new ResponseEntity<>(task, HttpStatus.OK);

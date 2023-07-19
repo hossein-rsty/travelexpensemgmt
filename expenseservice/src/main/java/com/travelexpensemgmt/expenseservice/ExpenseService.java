@@ -80,6 +80,14 @@ public class ExpenseService {
             throw new IllegalArgumentException("Expense not found by id: " + expense.getExpenseId());
         }
     }
+    public Expense setAssignedDoc(String expenseId, String docId){
+        Expense expense = getExpenseById(expenseId);
+        expense.setAssignedDocId(docId);
+        final ExpenseDbModel savedExpense = expenseRepository
+                .save(editExpenseDbModel(expense));
+        return createExpense(savedExpense);
+    }
+
     /**
      * INTERNAL
      * @param expense to be converted to a DB-Model Object
@@ -92,6 +100,7 @@ public class ExpenseService {
                 .amount(expense.getAmount())
                 .currency(expense.getCurrency())
                 .description(expense.getDescription())
+                .assignedDocId(expense.getAssignedDocId())
                 .build();
     }
 
@@ -107,12 +116,13 @@ public class ExpenseService {
                 .amount(expense.getAmount())
                 .currency(expense.getCurrency())
                 .description(expense.getDescription())
+                .assignedDocId(expense.getAssignedDocId())
                 .build();
     }
 
     /**
      * INTERNAL
-     * @param expenseDbModel to be converted to a Task Object
+     * @param expenseDbModel to be converted to an Expense Object
      * @return the converted object
      */
     private Expense createExpense(ExpenseDbModel expenseDbModel) {
@@ -122,6 +132,7 @@ public class ExpenseService {
                 .amount(expenseDbModel.getAmount())
                 .currency(expenseDbModel.getCurrency())
                 .description(expenseDbModel.getDescription())
+                .assignedDocId(expenseDbModel.getAssignedDocId())
                 .build();
     }
 }

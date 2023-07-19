@@ -53,10 +53,10 @@ public class DocController {
     }
     //Methode delete a Doc by Id
     @DeleteMapping("/delete/{docId}")
-    public ResponseEntity<Doc> deleteDockbyId(@PathVariable("docId") String taskId) {
+    public ResponseEntity<Doc> deleteDockbyId(@PathVariable("docId") String docId) {
         try {
-            Doc task = docService.deleteDocById(taskId);
-            return new ResponseEntity<>(task, HttpStatus.OK);
+            Doc doc = docService.deleteDocById(docId);
+            return new ResponseEntity<>(doc, HttpStatus.OK);
         }catch (IllegalArgumentException iae) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

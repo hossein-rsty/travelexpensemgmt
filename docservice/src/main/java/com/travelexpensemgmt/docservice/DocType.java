@@ -5,5 +5,5 @@ package com.travelexpensemgmt.docservice;
  * @author: Hossein Rostamiraeini
  */
 public enum DocType {
-    PDF, JPG, PNG, OTHER;
+    PDF, JPG, PNG, OTHER
 }
