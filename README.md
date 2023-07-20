@@ -1,3 +1,6 @@
+## Architecture
+![Architecture](Architecture.png)
+
 ## How to start the service local:
 
 Make sure to be checked out of the branch, where you want to run the service. (So if you want to run the code in Main, make sure, that you are checkedout in your local main)
